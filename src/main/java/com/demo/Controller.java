@@ -52,11 +52,6 @@ public class Controller {
         ArrayList<DataModel> s=new ArrayList<>();
         s=DataDao.addData(s);
         s=DataDao.postData(say4,s);
-
-
-
-
-
 //        String edited = StudentsDao.edit(student);
 //        response.setMessage(edited);
         return s;
