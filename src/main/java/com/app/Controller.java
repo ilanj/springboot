@@ -1,4 +1,7 @@
-package com.demo;
+package com.app;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.models.DataDao;
 import com.models.DataModel;
@@ -9,10 +12,9 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-
 @RestController
-
 @RequestMapping("/test")
+@ComponentScan(basePackages={"com.app"})
 
 @Api(value="SpringBootWithSwaggerPOC", description="crud operations demo")
 public class Controller {
@@ -46,7 +48,7 @@ public class Controller {
         // return new DataModel(counter.incrementAndGet()*2, value);
     }
 
-    @RequestMapping(value="/hello", method= RequestMethod.PUT)
+    @RequestMapping(value="/hello", method= RequestMethod.POST)
     public ArrayList<DataModel> addData(@RequestBody DataModel say4) {
 
         ArrayList<DataModel> s=new ArrayList<>();
@@ -57,7 +59,7 @@ public class Controller {
         return s;
     }
 
-    @RequestMapping(value="/hello", method= RequestMethod.POST)
+    @RequestMapping(value="/hello", method= RequestMethod.PUT)
     public ArrayList<DataModel> addDataPut(@RequestBody DataModel say5) {
 
         ArrayList<DataModel> s=new ArrayList<DataModel>();
@@ -83,16 +85,8 @@ public class Controller {
         ArrayList<DataModel> s=new ArrayList<DataModel>();
         s=DataDao.addData(s);
         s=DataDao.patchData(say5,s);
-
-
-
-
 //        String edited = StudentsDao.edit(student);
 //        response.setMessage(edited);
         return s;
     }
-
-
-
-
 }
